@@ -6,8 +6,11 @@ alias b := build
 scrape *PARAMS:
   cargo run --bin mb-scraper {{PARAMS}}
 
+check-formatting:
+  npm run check-fmt
+
 check-types:
-  npm run compiler-errors
+  npm run check-types
 
 lint:
   npm run lint
@@ -15,7 +18,7 @@ lint:
 test:
   npm run test
 
-check: check-types lint test
+check: check-formatting check-types lint test
 
 build:
   npm run build
