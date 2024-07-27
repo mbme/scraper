@@ -3,9 +3,32 @@
   "version": "1.0.0",
   "description": "Scrape the data from the page you're on",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "compiler-errors": "tsc --noEmit --project tsconfig.json",
+    "build": "tsx build.ts",
+    "prod:build": "NODE_ENV=production npm run build",
+    "lint": "eslint --cache --ext .ts src/",
+    "fmt": "prettier --write src/",
+    "check-fmt": "prettier --check src/",
+    "test": ""
   },
   "author": "mbme",
-  "license": "GPL-3.0-or-later"
+  "license": "GPL-3.0-or-later",
+  "devDependencies": {
+    "@eslint/js": "^9.8.0",
+    "@types/eslint__js": "^8.42.3",
+    "@types/node": "^20.14.12",
+    "esbuild": "^0.23.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "prettier": "^3.0.0",
+    "tsx": "^4.5.0",
+    "typescript": "~5.5.0",
+    "typescript-eslint": "^7.17.0"
+  },
+  "dependencies": {
+    "chrono-node": "^2.3.9",
+    "urlpattern-polyfill": "^10.0.0"
+  }
 }

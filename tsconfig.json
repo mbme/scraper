@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "incremental": true,
+    "esModuleInterop": true,
+    "lib": ["es2019", "dom", "dom.iterable"],
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "module": "ESNext",
+    "target": "es2019",
+
+    "sourceMap": true,
+
+    "skipLibCheck": true,
+
+    "experimentalDecorators": true,
+    "useDefineForClassFields": false,
+
+    "downlevelIteration": true,
+    "noImplicitReturns": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "strict": true,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "forceConsistentCasingInFileNames": true,
+    "noUncheckedIndexedAccess": true
+  },
+  "exclude": ["node_modules", "*/**/FLYCHECK_XXY_*"]
+}
