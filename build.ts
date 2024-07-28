@@ -5,8 +5,8 @@ import esbuild from 'esbuild';
 const isProduction = process.env.NODE_ENV === 'production';
 
 await esbuild.build({
-  entryPoints: ['./src/browser-scraper.ts'],
-  outfile: './dist/browser-scraper.js',
+  entryPoints: ['./src/index.ts'],
+  outfile: './dist/index.js',
 
   target: ['es2019'],
   bundle: true,

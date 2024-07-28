@@ -1,9 +1,14 @@
 import { ScrapedData, SCRAPERS } from './scrapers';
 import scraperUIstr from './scraper-ui.html';
 
+export class ScrapingDoneEvent extends CustomEvent<undefined> {
+  constructor() {
+    super('scraping-done');
+  }
+}
+
 export type ScrapeResult = {
   url: string;
-  originalUrl?: string;
 
   scraperName?: string;
 
@@ -11,7 +16,7 @@ export type ScrapeResult = {
   error?: string;
 };
 
-class BrowserScraper {
+export class BrowserScraper {
   public results: ScrapeResult[] = [];
 
   injectScraperUI() {
@@ -22,14 +27,13 @@ class BrowserScraper {
       .addEventListener('click', () => void this.scrape());
 
     document.getElementById('_scraper-ui-btn-done')!.addEventListener('click', () => {
-      window._doneCallback();
+      document.body.dispatchEvent(new ScrapingDoneEvent());
     });
   }
 
   async scrape(): Promise<ScrapeResult> {
     const result: ScrapeResult = {
       url: location.href,
-      originalUrl: window.originalURL.toString(),
     };
 
     for (const scraper of SCRAPERS) {
@@ -72,13 +76,3 @@ class BrowserScraper {
     }
   }
 }
-
-declare global {
-  interface Window {
-    originalURL: URL;
-    _scraper: BrowserScraper;
-    _doneCallback: () => void;
-  }
-}
-
-window._scraper = new BrowserScraper();
