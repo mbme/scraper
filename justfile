@@ -3,11 +3,6 @@
 alias c := check
 alias b := build
 
-e2e_test_args := "--experimental-test-snapshots --import tsx --test 'src/**/*.e2e.ts' --test-reporter spec"
-
-scrape *PARAMS:
-  cargo run --bin mb-scraper {{PARAMS}}
-
 check-formatting:
   npm run check-fmt
 
@@ -22,11 +17,23 @@ check: check-formatting check-types lint
 build:
   npm run build
 
-e2e: build
-  CHROMIUM_PATH=$(which chromium) node {{e2e_test_args}}
-
-e2eh:
-  DEBUG=true just e2e
+e2e *PARAMS: build
+  CHROMIUM_PATH=$(which chromium) npx tsx {{PARAMS}} \
+      --no-warnings=ExperimentalWarning \
+      --experimental-test-snapshots \
+      --test-reporter spec \
+      --test-concurrency=1 \
+      --test-timeout=40000 \
+      --test 'src/**/*.e2e.ts'
 
 e2e-update-snapshots:
-  CHROMIUM_PATH=$(which chromium) node --test-update-snapshots {{e2e_test_args}}
+  just e2e --test-update-snapshots
+
+e2e-only:
+  just e2e --test-only
+
+e2e-name PATTERN:
+  just e2e --test-name-pattern={{PATTERN}}
+
+e2e-name-update-snapshot PATTERN:
+  just e2e --test-name-pattern={{PATTERN}} --test-update-snapshots

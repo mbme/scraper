@@ -1,0 +1,31 @@
+exports[`myanimelist > can scrape a movie 1`] = `
+{
+  "url": "https://myanimelist.net/anime/523/Tonari_no_Totoro",
+  "scraperName": "MyAnimeListAnimeScraper",
+  "data": {
+    "typeName": "MyAnimeListAnime",
+    "title": "My Neighbor Totoro",
+    "coverURL": "https://cdn.myanimelist.net/images/anime/4/75923.jpg",
+    "releaseDate": "Apr 16, 1988",
+    "creators": "Studio Ghibli",
+    "duration": "1 hr. 26 min.",
+    "description": "In 1950s Japan, Tatsuo Kusakabe relocates himself and his two daughters, Satsuki and Mei, to the countryside to be closer to their mother, who is hospitalized due to long-term illness. As the girls grow acquainted with rural life, Mei encounters a small, bunny-like creature in the yard one day. Chasing it into the forest, she finds \\"Totoro\\"—a giant, mystical forest spirit whom she soon befriends. Before long, Satsuki too meets Totoro, and the two girls suddenly find their lives filled with magical adventures in nature and fantastical creatures of the woods.\\n\\n[Written by MAL Rewrite]\\n"
+  }
+}
+`;
+
+exports[`myanimelist > can scrape series 1`] = `
+{
+  "url": "https://myanimelist.net/anime/16498/Shingeki_no_Kyojin",
+  "scraperName": "MyAnimeListAnimeScraper",
+  "data": {
+    "typeName": "MyAnimeListAnime",
+    "title": "Attack on Titan",
+    "coverURL": "https://cdn.myanimelist.net/images/anime/10/47347.jpg",
+    "releaseDate": "Apr 7, 2013 to Sep 29, 2013",
+    "creators": "Wit Studio",
+    "duration": "24 min. per ep.",
+    "description": "Centuries ago, mankind was slaughtered to near extinction by monstrous humanoid creatures called Titans, forcing humans to hide in fear behind enormous concentric walls. What makes these giants truly terrifying is that their taste for human flesh is not born out of hunger but what appears to be out of pleasure. To ensure their survival, the remnants of humanity began living within defensive barriers, resulting in one hundred years without a single titan encounter. However, that fragile calm is soon shattered when a colossal Titan manages to breach the supposedly impregnable outer wall, reigniting the fight for survival against the man-eating abominations.\\n\\nAfter witnessing a horrific personal loss at the hands of the invading creatures, Eren Yeager dedicates his life to their eradication by enlisting into the Survey Corps, an elite military unit that combats the merciless humanoids outside the protection of the walls. Eren, his adopted sister Mikasa Ackerman, and his childhood friend Armin Arlert join the brutal war against the Titans and race to discover a way of defeating them before the last walls are breached.\\n\\n[Written by MAL Rewrite]"
+  }
+}
+`;

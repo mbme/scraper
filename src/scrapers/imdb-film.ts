@@ -3,10 +3,10 @@ import {
   getEl,
   getListStr,
   getListValues,
-  scrollToBottom,
   uniqArr,
   waitForFunction,
   waitForSelector,
+  waitForTimeout,
 } from '../utils';
 import { Scraper } from './scraper';
 
@@ -36,7 +36,10 @@ export class IMDBFilmScraper extends Scraper<'IMDBFilm', IMDBFilm> {
   });
 
   readonly scrape = async (): Promise<IMDBFilm> => {
-    scrollToBottom();
+    for (const loaderEl of document.querySelectorAll('[data-testid=storyline-loader]')) {
+      loaderEl.scrollIntoView();
+      await waitForTimeout(400);
+    }
 
     await waitForFunction(
       () => document.querySelector('[data-testid=storyline-loader]') === null,

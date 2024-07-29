@@ -1,0 +1,60 @@
+exports[`imdb > can scrape a film 1`] = `
+{
+  "url": "https://www.imdb.com/title/tt0133093/",
+  "scraperName": "IMDBFilmScraper",
+  "data": {
+    "typeName": "IMDBFilm",
+    "title": "The Matrix",
+    "coverURL": "https://m.media-amazon.com/images/M/MV5BNzQzOTk3OTAtNDQ0Zi00ZTVkLWI0MTEtMDllZjNkYzNjNTc4L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_QL75_UX190_CR0,2,190,281_.jpg",
+    "releaseDate": "1999",
+    "originalLanguage": "English",
+    "countriesOfOrigin": "United States, Australia",
+    "creators": "Lana Wachowski, Lilly Wachowski",
+    "cast": "Keanu Reeves, Laurence Fishburne, Carrie-Anne Moss",
+    "duration": "2h 16m",
+    "description": "Thomas A. Anderson is a man living two lives. By day he is an average computer programmer and by night a hacker known as Neo. Neo has always questioned his reality, but the truth is far beyond his imagination. Neo finds himself targeted by the police when he is contacted by Morpheus, a legendary computer hacker branded a terrorist by the government. As a rebel against the machines, Neo must confront the agents: super-powerful computer programs devoted to stopping Neo and the entire human rebellion."
+  }
+}
+`;
+
+exports[`imdb > can scrape mini series 1`] = `
+{
+  "url": "https://www.imdb.com/title/tt8134186/",
+  "scraperName": "IMDBFilmScraper",
+  "data": {
+    "typeName": "IMDBFilm",
+    "title": "Devs",
+    "coverURL": "https://m.media-amazon.com/images/M/MV5BODY3ODVjYjUtNTBiMy00ZjlkLTg5MTItNDU5NmVlM2U0YzhmXkEyXkFqcGdeQXVyMzY0MTE3NzU@._V1_QL75_UX190_CR0,2,190,281_.jpg",
+    "releaseDate": "2020",
+    "originalLanguage": "English",
+    "countriesOfOrigin": "United Kingdom, United States",
+    "creators": "Alex Garland",
+    "cast": "Sonoya Mizuno, Nick Offerman, Jin Ha",
+    "seasons": 1,
+    "episodes": 8,
+    "duration": "",
+    "description": "A computer engineer investigates the secretive development division in her company, which she believes is behind the disappearance of her boyfriend."
+  }
+}
+`;
+
+exports[`imdb > can scrape series 1`] = `
+{
+  "url": "https://www.imdb.com/title/tt0098936/",
+  "scraperName": "IMDBFilmScraper",
+  "data": {
+    "typeName": "IMDBFilm",
+    "title": "Twin Peaks",
+    "coverURL": "https://m.media-amazon.com/images/M/MV5BMTExNzk2NjcxNTNeQTJeQWpwZ15BbWU4MDcxOTczOTIx._V1_QL75_UY281_CR15,0,190,281_.jpg",
+    "releaseDate": "1990–1991",
+    "originalLanguage": "English",
+    "countriesOfOrigin": "United States",
+    "creators": "Mark Frost, David Lynch",
+    "cast": "Kyle MacLachlan, Michael Ontkean, Mädchen Amick",
+    "seasons": 2,
+    "episodes": 30,
+    "duration": "50m",
+    "description": "The body of a young girl (Laura Palmer) is washed up on a beach near the small Washington state town of Twin Peaks. FBI Special Agent Dale Cooper is called in to investigate her strange demise only to uncover a web of mystery that ultimately leads him deep into the heart of the surrounding woodland and his very own soul."
+  }
+}
+`;

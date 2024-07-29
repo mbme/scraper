@@ -38,7 +38,9 @@ export class YakabooBookScraper extends Scraper<'YakabooBook', YakabooBook> {
 
     const description = getEl('.description__content', 'description').innerText;
 
-    getEl('.main__chars button.ui-btn-nav', 'expand attributes button').click();
+    const expandAttrsBtn = getEl('.main__chars button.ui-btn-nav', 'expand attributes button');
+    expandAttrsBtn.scrollIntoView();
+    expandAttrsBtn.click();
     await waitForFunction(
       () =>
         document

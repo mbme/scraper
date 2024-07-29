@@ -1,5 +1,3 @@
-import * as chrono from 'chrono-node';
-
 type ObjValue = string | number | boolean | null | undefined;
 export type Obj<TValue = ObjValue> = Record<string, TValue>;
 
@@ -56,12 +54,6 @@ export const waitForSelector = async <T extends Element = HTMLElement>(
   await waitForFunction(() => !!el.querySelector(selector), description, timeoutMs);
 
   return getEl<T>(selector, description);
-};
-
-export const parseHumanDate = (dateStr: string): Date | undefined => {
-  const date: Date | null = chrono.parseDate(dateStr);
-
-  return date ?? undefined;
 };
 
 type GetEl = {

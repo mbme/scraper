@@ -1,4 +1,4 @@
-exports[`scraper > works on any website 1`] = `
+exports[`any website > works everywhere 1`] = `
 {
   "url": "https://www.google.com/"
 }

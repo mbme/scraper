@@ -30,7 +30,6 @@
     "typescript-eslint": "^7.17.0"
   },
   "dependencies": {
-    "chrono-node": "^2.3.9",
     "urlpattern-polyfill": "^10.0.0"
   }
 }
