@@ -3,18 +3,21 @@
   "version": "2.4.0",
   "description": "Scrape the data from the page you're on",
   "main": "index.js",
+  "types": "dist/index.d.ts",
   "type": "module",
   "scripts": {
     "check-types": "tsc --noEmit --project tsconfig.json",
     "build": "tsx build.ts",
     "prod:build": "NODE_ENV=production npm run build",
+    "build:typings": "npx tsc --declaration --emitDeclarationOnly --outDir ./dist",
     "lint": "eslint --cache --ext .ts src/",
     "fmt": "prettier --write src/",
     "check-fmt": "prettier --check src/",
     "test": "",
     "preversion": "npm run check-types && npm run lint && npm run check-fmt",
     "version": "npm run build && cp dist/scraper.user.js* docs/ && git add -f docs/scraper.user.js*",
-    "postversion": "git push && git push --tags"
+    "postversion": "git push && git push --tags",
+    "prepare": "npm run build:typings"
   },
   "author": "mbme",
   "license": "GPL-3.0-or-later",
