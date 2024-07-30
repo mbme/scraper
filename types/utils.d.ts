@@ -1,0 +1,21 @@
+type ObjValue = string | number | boolean | null | undefined;
+export type Obj<TValue = ObjValue> = Record<string, TValue>;
+export declare function uniqArr<T>(arr: T[]): T[];
+export declare const waitForTimeout: (timeoutMs: number) => Promise<void>;
+export declare const waitForFunction: (callback: () => boolean, description: string, timeoutMs?: number) => Promise<void>;
+export declare const waitForSelector: <T extends Element = HTMLElement>(el: HTMLElement | Document, selector: string, description: string, timeoutMs?: number) => Promise<T>;
+type GetEl = {
+    <T extends Element = HTMLElement>(selector: string): T | null;
+    <T extends Element = HTMLElement>(selector: string, description: string): T;
+    <T extends Element = HTMLElement>(root: HTMLElement, selector: string): T | null;
+    <T extends Element = HTMLElement>(root: HTMLElement, selector: string, description: string): T;
+};
+export declare const getEl: GetEl;
+export declare const getAll: <T extends Element = HTMLElement>(root: HTMLElement | Document, selector: string) => T[];
+export type ArrayElement<ArrayType extends readonly unknown[]> = ArrayType extends readonly (infer ElementType)[] ? ElementType : never;
+export declare const getSelectionString: (el: HTMLElement) => string;
+export declare function getListValues(el: HTMLElement | Document | undefined, selector: string): string[];
+export declare function getTable(el: HTMLElement | Document, rowSelector: string, split?: string): Obj<string | undefined>;
+export declare const getListStr: (el: HTMLElement | Document, selector: string) => string;
+export declare function scrollToBottom(): void;
+export {};
