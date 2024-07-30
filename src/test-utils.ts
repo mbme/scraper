@@ -84,7 +84,7 @@ export async function setupPage(page: Page, url: string, options: PageSetupOptio
 export async function scrapePage(t: TestContext, page: Page) {
   try {
     const result = await page.evaluate(() => {
-      return window._scraper.scrape();
+      return window._scraper!.scrape();
     });
 
     return result;

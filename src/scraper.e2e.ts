@@ -14,5 +14,8 @@ defineScraperTestSuite('any website', (getPage) => {
     const result = await scrapePage(t, page);
 
     t.assert.snapshot(result);
+
+    await page.click('#_scraper-ui-btn-done');
+    await page.waitForSelector('#_scraper-ui-panel', { hidden: true });
   });
 });
