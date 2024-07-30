@@ -1,6 +1,6 @@
 import { Scraper } from './scraper';
 
-type Image = {
+export type Image = {
   typeName: 'Image';
   imageURL: string;
 };

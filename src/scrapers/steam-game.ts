@@ -1,7 +1,7 @@
 import { getEl, getListStr } from '../utils';
 import { Scraper } from './scraper';
 
-type SteamGame = {
+export type SteamGame = {
   typeName: 'SteamGame';
   coverURL: string;
   name: string;
