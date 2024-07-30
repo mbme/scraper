@@ -13,7 +13,8 @@
     "check-fmt": "prettier --check src/",
     "test": "",
     "preversion": "npm run check-types && npm run lint && npm run check-fmt",
-    "version": "npm run build && git add -f dist/scraper.user.js*"
+    "version": "npm run build && git add -f dist/scraper.user.js*",
+    "postversion": "git push && git push --tags"
   },
   "author": "mbme",
   "license": "GPL-3.0-or-later",
