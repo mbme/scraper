@@ -1,7 +1,7 @@
 
 // ==UserScript==
 // @name         scraper
-// @version      2.3.0
+// @version      2.4.0
 // @description  Scrape the data from the page you're on
 // @author       mbme
 // @match        *://*/*
@@ -1081,21 +1081,20 @@
   var scraper_ui_default = '<div id="_scraper-ui-panel">\n  <button id="_scraper-ui-btn-scrape">SCRAPE!</button>\n\n  <span id="_scraper-results-counter">Results: <span>0</span></span>\n\n  <button id="_scraper-ui-btn-done">Done</button>\n\n  <style>\n    #_scraper-ui-panel {\n      background: lightgoldenrodyellow;\n      box-shadow:\n        rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,\n        rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,\n        rgba(255, 255, 255, 0.08) 0px 1px 0px inset;\n      border-radius: 5px;\n      padding: 1em 1.2em;\n\n      display: flex;\n      align-items: center;\n\n      position: fixed;\n      top: 5%;\n      right: 10%;\n      z-index: 1000;\n    }\n\n    #_scraper-ui-panel button {\n      font-size: xx-large;\n      cursor: pointer;\n      padding: 0.5em;\n    }\n\n    #_scraper-ui-panel #_scraper-results-counter {\n      font-size: x-large;\n      margin-left: 0.5em;\n      margin-right: 3em;\n    }\n  </style>\n</div>\n';
 
   // src/browser-scraper.ts
-  var ScrapingDoneEvent = class extends CustomEvent {
-    constructor() {
-      super("scraping-done");
-    }
-  };
   var BrowserScraper = class {
     constructor() {
       this.results = [];
     }
-    injectScraperUI() {
+    injectScraperUI(onDone) {
       document.body.insertAdjacentHTML("afterbegin", scraper_ui_default);
       document.getElementById("_scraper-ui-btn-scrape").addEventListener("click", () => void this.scrape());
       document.getElementById("_scraper-ui-btn-done").addEventListener("click", () => {
-        document.body.dispatchEvent(new ScrapingDoneEvent());
+        onDone();
       });
+    }
+    destroy() {
+      var _a3;
+      (_a3 = document.getElementById("_scraper-ui-panel")) == null ? void 0 : _a3.remove();
     }
     async scrape() {
       var _a3, _b;
@@ -1134,8 +1133,23 @@
 
   // src/index.ts
   function initScraper() {
-    window._scraper = new BrowserScraper();
-    window._scraper.injectScraperUI();
+    const scraper = new BrowserScraper();
+    window._scraper = scraper;
+    scraper.injectScraperUI(async () => {
+      const container = {
+        "@type": "scrape-results-container",
+        results: scraper.results
+      };
+      try {
+        await navigator.clipboard.writeText(JSON.stringify(container));
+      } catch (e) {
+        console.error(e);
+        alert(`Failed to copy text to clipboard: ${String(e)}`);
+        throw e;
+      }
+      scraper.destroy();
+      window._scraper = void 0;
+    });
   }
   if (window.GM_registerMenuCommand) {
     window.GM_registerMenuCommand("Run scraper", initScraper);
