@@ -1,6 +1,6 @@
 {
   "name": "scraper",
-  "version": "2.5.0",
+  "version": "2.6.0",
   "description": "Scrape the data from the page you're on",
   "main": "index.js",
   "types": "types/index.d.ts",
@@ -35,5 +35,9 @@
     "urlpattern-polyfill": "^10.0.0"
   },
   "dependencies": {},
-  "files": ["src/", "docs/", "types/"]
+  "files": [
+    "src/",
+    "docs/",
+    "types/"
+  ]
 }
