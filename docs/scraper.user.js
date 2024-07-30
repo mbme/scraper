@@ -1,10 +1,10 @@
 
 // ==UserScript==
 // @name         scraper
-// @version      2.2.0
+// @version      2.3.0
 // @description  Scrape the data from the page you're on
 // @author       mbme
-// @match        *
+// @match        *://*/*
 // @grant        GM_registerMenuCommand
 // @updateURL    https://raw.githubusercontent.com/mbme/scraper/main/docs/scraper.user.js
 // @downloadURL  https://raw.githubusercontent.com/mbme/scraper/main/docs/scraper.user.js
