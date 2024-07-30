@@ -28,5 +28,5 @@ module.exports = {
     '@typescript-eslint/restrict-template-expressions': ['error', { allowNumber: true }],
   },
   root: true,
-  ignorePatterns: ['build.ts', 'dist/', 'docs/'],
+  ignorePatterns: ['build.ts', 'dist/', 'docs/', 'types/'],
 };

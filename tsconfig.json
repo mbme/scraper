@@ -27,5 +27,5 @@
     "forceConsistentCasingInFileNames": true,
     "noUncheckedIndexedAccess": true
   },
-  "exclude": ["node_modules", "build.ts", "dist", "docs", "*/**/FLYCHECK_XXY_*"]
+  "exclude": ["node_modules", "build.ts", "dist", "docs", "types", "*/**/FLYCHECK_XXY_*"]
 }
