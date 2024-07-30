@@ -11,7 +11,9 @@
     "lint": "eslint --cache --ext .ts src/",
     "fmt": "prettier --write src/",
     "check-fmt": "prettier --check src/",
-    "test": ""
+    "test": "",
+    "preversion": "npm run check-types && npm run lint && npm run check-fmt",
+    "version": "npm run build && git add -f dist/scraper.user.js*"
   },
   "author": "mbme",
   "license": "GPL-3.0-or-later",

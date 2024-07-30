@@ -3,6 +3,10 @@
 alias c := check
 alias b := build
 
+[confirm]
+release:
+  npm version major
+
 check-formatting:
   npm run check-fmt
 
