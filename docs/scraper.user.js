@@ -1,7 +1,7 @@
 
 // ==UserScript==
 // @name         scraper
-// @version      2.6.0
+// @version      2.7.0
 // @description  Scrape the data from the page you're on
 // @author       mbme
 // @match        *://*/*

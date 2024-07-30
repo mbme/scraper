@@ -1,4 +1,6 @@
 import { BrowserScraper, ScrapeResult } from './browser-scraper';
+export type { ScrapedData, YakabooBook, SteamGame, MyAnimeListAnime, IMDBFilm, Image, } from './scrapers';
+export type { ScrapeResult };
 declare global {
     interface Window {
         _scraper?: BrowserScraper;
