@@ -5,10 +5,6 @@ import packageJson from './package.json';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
-// TODO configure auto-update
-// @updateURL    https://raw.githubusercontent.com/yourusername/yourrepository/main/youruserscript.user.js
-// @downloadURL  https://raw.githubusercontent.com/yourusername/yourrepository/main/youruserscript.user.js
-
 const banner = `
 // ==UserScript==
 // @name         ${packageJson.name}
@@ -17,6 +13,8 @@ const banner = `
 // @author       ${packageJson.author}
 // @match        *
 // @grant        GM_registerMenuCommand
+// @updateURL    https://raw.githubusercontent.com/mbme/scraper/main/dist/scraper.user.js
+// @downloadURL  https://raw.githubusercontent.com/mbme/scraper/main/dist/scraper.user.js
 // ==/UserScript==
 `;
 
