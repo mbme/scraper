@@ -11,7 +11,7 @@ const banner = `
 // @version      ${packageJson.version}
 // @description  ${packageJson.description}
 // @author       ${packageJson.author}
-// @match        *
+// @match        *://*/*
 // @grant        GM_registerMenuCommand
 // @updateURL    https://raw.githubusercontent.com/mbme/scraper/main/docs/scraper.user.js
 // @downloadURL  https://raw.githubusercontent.com/mbme/scraper/main/docs/scraper.user.js
