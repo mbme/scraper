@@ -11,7 +11,10 @@ const DEBUG = process.env.DEBUG === 'true';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-export const scraperScript = await fs.readFile(path.join(__dirname, '../dist/index.js'), 'utf-8');
+export const scraperScript = await fs.readFile(
+  path.join(__dirname, '../dist/scraper.user.js'),
+  'utf-8',
+);
 
 let browser: Browser | undefined;
 let context: BrowserContext | undefined;
