@@ -12,7 +12,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 export const scraperScript = await fs.readFile(
-  path.join(__dirname, '../docs/scraper.user.js'),
+  path.join(__dirname, '../dist/scraper.user.js'),
   'utf-8',
 );
 

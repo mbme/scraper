@@ -20,7 +20,7 @@ const banner = `
 
 await esbuild.build({
   entryPoints: ['./src/index.ts'],
-  outfile: './docs/scraper.user.js',
+  outfile: './dist/scraper.user.js',
 
   banner: {
     js: banner,
