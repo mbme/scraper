@@ -13,14 +13,14 @@ const banner = `
 // @author       ${packageJson.author}
 // @match        *
 // @grant        GM_registerMenuCommand
-// @updateURL    https://raw.githubusercontent.com/mbme/scraper/main/dist/scraper.user.js
-// @downloadURL  https://raw.githubusercontent.com/mbme/scraper/main/dist/scraper.user.js
+// @updateURL    https://raw.githubusercontent.com/mbme/scraper/main/docs/scraper.user.js
+// @downloadURL  https://raw.githubusercontent.com/mbme/scraper/main/docs/scraper.user.js
 // ==/UserScript==
 `;
 
 await esbuild.build({
   entryPoints: ['./src/index.ts'],
-  outfile: './dist/scraper.user.js',
+  outfile: './docs/scraper.user.js',
 
   banner: {
     js: banner,
