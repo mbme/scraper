@@ -5,11 +5,13 @@ import packageJson from './package.json';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
+const now = new Date();
+
 const banner = `
 // ==UserScript==
 // @name         ${packageJson.name}
 // @version      ${packageJson.version}
-// @description  ${packageJson.description}
+// @description  ${packageJson.description} Updated on ${now.toDateString()} ${now.toTimeString()}
 // @author       ${packageJson.author}
 // @match        *://*/*
 // @grant        GM_registerMenuCommand
