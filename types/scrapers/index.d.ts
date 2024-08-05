@@ -1,10 +1,9 @@
-import { ArrayElement } from '../utils';
-import { ExtractScraperGeneric } from './scraper';
-import { YakabooBookScraper, YakabooBook } from './yakaboo-book';
-import { SteamGameScraper, SteamGame } from './steam-game';
-import { MyAnimeListAnimeScraper, MyAnimeListAnime } from './myanimelist-anime';
-import { IMDBFilmScraper, IMDBFilm } from './imdb-film';
-import { ImageScraper, Image } from './any-image';
-export declare const SCRAPERS: readonly [YakabooBookScraper, SteamGameScraper, MyAnimeListAnimeScraper, IMDBFilmScraper, ImageScraper];
-export type ScrapedData = ExtractScraperGeneric<ArrayElement<typeof SCRAPERS>>;
+import { Scraper } from './scraper';
+import { YakabooBook } from './yakaboo-book';
+import { SteamGame } from './steam-game';
+import { MyAnimeListAnime } from './myanimelist-anime';
+import { IMDBFilm } from './imdb-film';
+import { Image } from './any-image';
 export type { YakabooBook, SteamGame, MyAnimeListAnime, IMDBFilm, Image };
+export type ScrapedData = YakabooBook | SteamGame | MyAnimeListAnime | IMDBFilm | Image;
+export declare const SCRAPERS: Scraper<ScrapedData['typeName'], ScrapedData>[];

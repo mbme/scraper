@@ -5,4 +5,3 @@ export declare abstract class Scraper<TypeName extends string, Data extends {
     abstract readonly pattern: URLPattern;
     abstract readonly scrape: (() => Data) | (() => Promise<Data>);
 }
-export type ExtractScraperGeneric<Type> = Type extends Scraper<string, infer X> ? X : never;

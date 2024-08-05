@@ -12,7 +12,6 @@ type GetEl = {
 };
 export declare const getEl: GetEl;
 export declare const getAll: <T extends Element = HTMLElement>(root: HTMLElement | Document, selector: string) => T[];
-export type ArrayElement<ArrayType extends readonly unknown[]> = ArrayType extends readonly (infer ElementType)[] ? ElementType : never;
 export declare const getSelectionString: (el: HTMLElement) => string;
 export declare function getListValues(el: HTMLElement | Document | undefined, selector: string): string[];
 export declare function getTable(el: HTMLElement | Document, rowSelector: string, split?: string): Obj<string | undefined>;
