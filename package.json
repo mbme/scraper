@@ -1,6 +1,6 @@
 {
   "name": "scraper",
-  "version": "2.8.0",
+  "version": "2.9.0",
   "description": "Scrape the data from the page you're on.",
   "main": "index.js",
   "types": "types/index.d.ts",

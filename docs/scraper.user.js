@@ -1,8 +1,8 @@
 
 // ==UserScript==
 // @name         scraper
-// @version      2.8.0
-// @description  Scrape the data from the page you're on
+// @version      2.9.0
+// @description  Scrape the data from the page you're on. Updated on Mon Aug 05 2024 20:19:39 GMT+0300 (Eastern European Summer Time)
 // @author       mbme
 // @match        *://*/*
 // @grant        GM_registerMenuCommand
