@@ -1,8 +1,8 @@
 
 // ==UserScript==
 // @name         scraper
-// @version      2.9.0
-// @description  Scrape the data from the page you're on. Updated on Mon Aug 05 2024 20:19:39 GMT+0300 (Eastern European Summer Time)
+// @version      2.10.0
+// @description  Scrape the data from the page you're on. Updated on Tue Aug 06 2024 22:40:15 GMT+0300 (Eastern European Summer Time)
 // @author       mbme
 // @match        *://*/*
 // @grant        GM_registerMenuCommand
@@ -853,7 +853,7 @@
       });
       this.scrape = async () => {
         var _a3, _b;
-        const coverURL = getEl(".gallery [aria-hidden=false] img", "cover image").src;
+        const coverURL = getEl(".gallery img", "cover image").src;
         const title = getEl(".base-product__title h1", "title").innerText.substring("\u041A\u043D\u0438\u0433\u0430 ".length).trim();
         (_a3 = getEl(".description__btn")) == null ? void 0 : _a3.click();
         const description = getEl(".description__content", "description").innerText;
