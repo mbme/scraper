@@ -28,7 +28,7 @@ export class YakabooBookScraper extends Scraper<'YakabooBook', YakabooBook> {
   });
 
   readonly scrape = async (): Promise<YakabooBook> => {
-    const coverURL = getEl<HTMLImageElement>('.gallery [aria-hidden=false] img', 'cover image').src;
+    const coverURL = getEl<HTMLImageElement>('.gallery img', 'cover image').src;
     const title = getEl('.base-product__title h1', 'title')
       .innerText.substring('Книга '.length) // remove the prefix that Yakaboo adds to all titles
       .trim();
