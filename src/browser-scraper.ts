@@ -67,10 +67,19 @@ export class BrowserScraper {
   private _addResult(result: ScrapeResult) {
     this.results.push(result);
 
-    const counterEl = document.querySelector('#_scraper-results-counter span');
+    const totalCountEl = document.querySelector('#_scraper-results-counter ._scraper-total-count');
+    const errorsCountEl = document.querySelector(
+      '#_scraper-results-counter ._scraper-errors-count',
+    );
 
-    if (counterEl) {
-      counterEl.innerHTML = this.results.length.toString();
+    if (totalCountEl) {
+      totalCountEl.innerHTML = this.results.length.toString();
+    }
+
+    if (errorsCountEl) {
+      errorsCountEl.innerHTML = this.results
+        .filter((result) => Boolean(result.error))
+        .length.toString();
     }
   }
 }

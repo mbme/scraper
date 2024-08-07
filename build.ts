@@ -5,18 +5,26 @@ import packageJson from './package.json';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
+const scriptName = packageJson.name + (isProduction ? '' : '-dev');
+const scriptVersion = isProduction ? packageJson.version : 'Beta';
+
 const now = new Date();
+const nowStr = `${now.toDateString()} ${now.toTimeString()}`;
+
+const prodUrl = isProduction
+  ? 'https://raw.githubusercontent.com/mbme/scraper/main/docs/scraper.user.js'
+  : '';
 
 const banner = `
 // ==UserScript==
-// @name         ${packageJson.name}
-// @version      ${packageJson.version}
-// @description  ${packageJson.description} Updated on ${now.toDateString()} ${now.toTimeString()}
+// @name         ${scriptName}
+// @version      ${scriptVersion}
+// @description  ${packageJson.description} Updated on ${nowStr}
 // @author       ${packageJson.author}
 // @match        *://*/*
 // @grant        GM_registerMenuCommand
-// @updateURL    https://raw.githubusercontent.com/mbme/scraper/main/docs/scraper.user.js
-// @downloadURL  https://raw.githubusercontent.com/mbme/scraper/main/docs/scraper.user.js
+// @updateURL    ${prodUrl}
+// @downloadURL  ${prodUrl}
 // ==/UserScript==
 `;
 

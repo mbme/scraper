@@ -15,7 +15,7 @@
     "check-fmt": "prettier --check src/",
     "test": "",
     "preversion": "npm run check-types && npm run lint && npm run check-fmt",
-    "version": "npm run build && cp dist/scraper.user.js* docs/ && git add -f docs/scraper.user.js* && npm run build:typings && git add -f types/",
+    "version": "npm run prod:build && cp dist/scraper.user.js* docs/ && git add -f docs/scraper.user.js* && npm run build:typings && git add -f types/",
     "postversion": "git push && git push --tags"
   },
   "author": "mbme",
