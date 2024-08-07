@@ -128,6 +128,7 @@ export class IMDBFilmScraper extends Scraper<IMDBFilm> {
 
     return {
       typeName: 'IMDBFilm' as const,
+      version: 1,
       title,
       coverURL,
       releaseDate,

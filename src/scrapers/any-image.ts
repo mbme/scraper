@@ -12,6 +12,7 @@ export class ImageScraper extends Scraper<Image> {
   scrape() {
     return {
       typeName: 'Image' as const,
+      version: 1,
       imageURL: location.href,
     };
   }

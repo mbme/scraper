@@ -61,6 +61,7 @@ export class YakabooBookScraper extends Scraper<YakabooBook> {
 
     return {
       typeName: 'YakabooBook' as const,
+      version: 1,
       coverURL,
       title,
       authors,

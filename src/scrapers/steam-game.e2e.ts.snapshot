@@ -4,6 +4,7 @@ exports[`steam > can scrape a game 1`] = `
   "scraperName": "SteamGameScraper",
   "data": {
     "typeName": "SteamGame",
+    "version": 1,
     "coverURL": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/990080/header.jpg?t=1717689083",
     "name": "Hogwarts Legacy",
     "releaseDate": "10 Feb, 2023",

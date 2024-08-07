@@ -4,6 +4,7 @@ exports[`imdb > can scrape a film 1`] = `
   "scraperName": "IMDBFilmScraper",
   "data": {
     "typeName": "IMDBFilm",
+    "version": 1,
     "title": "The Matrix",
     "coverURL": "https://m.media-amazon.com/images/M/MV5BNzQzOTk3OTAtNDQ0Zi00ZTVkLWI0MTEtMDllZjNkYzNjNTc4L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_QL75_UX190_CR0,2,190,281_.jpg",
     "releaseDate": "1999",
@@ -23,6 +24,7 @@ exports[`imdb > can scrape mini series 1`] = `
   "scraperName": "IMDBFilmScraper",
   "data": {
     "typeName": "IMDBFilm",
+    "version": 1,
     "title": "Devs",
     "coverURL": "https://m.media-amazon.com/images/M/MV5BODY3ODVjYjUtNTBiMy00ZjlkLTg5MTItNDU5NmVlM2U0YzhmXkEyXkFqcGdeQXVyMzY0MTE3NzU@._V1_QL75_UX190_CR0,2,190,281_.jpg",
     "releaseDate": "2020",
@@ -44,6 +46,7 @@ exports[`imdb > can scrape series 1`] = `
   "scraperName": "IMDBFilmScraper",
   "data": {
     "typeName": "IMDBFilm",
+    "version": 1,
     "title": "Twin Peaks",
     "coverURL": "https://m.media-amazon.com/images/M/MV5BMTExNzk2NjcxNTNeQTJeQWpwZ15BbWU4MDcxOTczOTIx._V1_QL75_UY281_CR15,0,190,281_.jpg",
     "releaseDate": "1990–1991",

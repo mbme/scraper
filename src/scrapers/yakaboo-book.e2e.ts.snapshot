@@ -4,6 +4,7 @@ exports[`yakaboo > can scrape a book 1`] = `
   "scraperName": "YakabooBookScraper",
   "data": {
     "typeName": "YakabooBook",
+    "version": 1,
     "coverURL": "https://static.yakaboo.ua/media/cloudflare/product/webp/600x840/i/m/img_53701.jpg",
     "title": "Stories of Your Life and Others",
     "authors": "Тед Чан",

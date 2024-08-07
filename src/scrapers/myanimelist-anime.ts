@@ -38,6 +38,7 @@ export class MyAnimeListAnimeScraper extends Scraper<MyAnimeListAnime> {
 
     return {
       typeName: 'MyAnimeListAnime' as const,
+      version: 1,
       title,
       coverURL,
       releaseDate,

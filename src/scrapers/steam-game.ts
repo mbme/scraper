@@ -29,6 +29,7 @@ export class SteamGameScraper extends Scraper<SteamGame> {
 
     return {
       typeName: 'SteamGame' as const,
+      version: 1,
       coverURL,
       name,
       releaseDate,

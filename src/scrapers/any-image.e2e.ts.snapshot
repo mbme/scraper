@@ -4,6 +4,7 @@ exports[`any image > can scrape a png image 1`] = `
   "scraperName": "ImageScraper",
   "data": {
     "typeName": "Image",
+    "version": 1,
     "imageURL": "https://upload.wikimedia.org/wikipedia/en/7/7d/Lenna_%28test_image%29.png"
   }
 }

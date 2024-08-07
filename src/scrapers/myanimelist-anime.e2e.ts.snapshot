@@ -4,6 +4,7 @@ exports[`myanimelist > can scrape a movie 1`] = `
   "scraperName": "MyAnimeListAnimeScraper",
   "data": {
     "typeName": "MyAnimeListAnime",
+    "version": 1,
     "title": "My Neighbor Totoro",
     "coverURL": "https://cdn.myanimelist.net/images/anime/4/75923.jpg",
     "releaseDate": "Apr 16, 1988",
@@ -20,6 +21,7 @@ exports[`myanimelist > can scrape series 1`] = `
   "scraperName": "MyAnimeListAnimeScraper",
   "data": {
     "typeName": "MyAnimeListAnime",
+    "version": 1,
     "title": "Attack on Titan",
     "coverURL": "https://cdn.myanimelist.net/images/anime/10/47347.jpg",
     "releaseDate": "Apr 7, 2013 to Sep 29, 2013",
