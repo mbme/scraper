@@ -1,8 +1,8 @@
 
 // ==UserScript==
 // @name         scraper
-// @version      2.10.0
-// @description  Scrape the data from the page you're on. Updated on Tue Aug 06 2024 22:40:15 GMT+0300 (Eastern European Summer Time)
+// @version      2.11.0
+// @description  Scrape the data from the page you're on. Updated on Wed Aug 07 2024 11:42:03 GMT+0300 (Eastern European Summer Time)
 // @author       mbme
 // @match        *://*/*
 // @grant        GM_registerMenuCommand
@@ -851,41 +851,42 @@
         hostname: "www.yakaboo.ua",
         pathname: "/ua/*"
       });
-      this.scrape = async () => {
-        var _a3, _b;
-        const coverURL = getEl(".gallery img", "cover image").src;
-        const title = getEl(".base-product__title h1", "title").innerText.substring("\u041A\u043D\u0438\u0433\u0430 ".length).trim();
-        (_a3 = getEl(".description__btn")) == null ? void 0 : _a3.click();
-        const description = getEl(".description__content", "description").innerText;
-        const expandAttrsBtn = getEl(".main__chars button.ui-btn-nav", "expand attributes button");
-        expandAttrsBtn.scrollIntoView();
-        expandAttrsBtn.click();
-        await waitForFunction(
-          () => {
-            var _a4, _b2;
-            return (_b2 = (_a4 = document.querySelector(".main__chars button.ui-btn-nav")) == null ? void 0 : _a4.innerText.includes("\u041F\u0440\u0438\u0445\u043E\u0432\u0430\u0442\u0438")) != null ? _b2 : false;
-          },
-          "collapse attributes button"
-        );
-        const table = getTable(document, ".product-chars .chars .char", "\n");
-        const authors = table["\u0410\u0432\u0442\u043E\u0440"] || "";
-        const language = (_b = LANGUAGE_TRANSLATIONS[table["\u041C\u043E\u0432\u0430"] || ""]) != null ? _b : "";
-        const publicationDate = table["\u0420\u0456\u043A \u0432\u0438\u0434\u0430\u043D\u043D\u044F"] || "";
-        const translators = table["\u041F\u0435\u0440\u0435\u043A\u043B\u0430\u0434\u0430\u0447"] || "";
-        const publisher = table["\u0412\u0438\u0434\u0430\u0432\u043D\u0438\u0446\u0442\u0432\u043E"] || "";
-        const pages = Number.parseInt(table["\u041A\u0456\u043B\u044C\u043A\u0456\u0441\u0442\u044C \u0441\u0442\u043E\u0440\u0456\u043D\u043E\u043A"] || "", 10);
-        return {
-          typeName: "YakabooBook",
-          coverURL,
-          title,
-          authors,
-          publicationDate,
-          description,
-          translators,
-          publisher,
-          pages,
-          language
-        };
+    }
+    async scrape() {
+      var _a3, _b;
+      const coverURL = getEl(".gallery img", "cover image").src;
+      const title = getEl(".base-product__title h1", "title").innerText.substring("\u041A\u043D\u0438\u0433\u0430 ".length).trim();
+      (_a3 = getEl(".description__btn")) == null ? void 0 : _a3.click();
+      const description = getEl(".description__content", "description").innerText;
+      const expandAttrsBtn = getEl(".main__chars button.ui-btn-nav", "expand attributes button");
+      expandAttrsBtn.scrollIntoView();
+      expandAttrsBtn.click();
+      await waitForFunction(
+        () => {
+          var _a4, _b2;
+          return (_b2 = (_a4 = document.querySelector(".main__chars button.ui-btn-nav")) == null ? void 0 : _a4.innerText.includes("\u041F\u0440\u0438\u0445\u043E\u0432\u0430\u0442\u0438")) != null ? _b2 : false;
+        },
+        "collapse attributes button"
+      );
+      const table = getTable(document, ".product-chars .chars .char", "\n");
+      const authors = table["\u0410\u0432\u0442\u043E\u0440"] || "";
+      const language = (_b = LANGUAGE_TRANSLATIONS[table["\u041C\u043E\u0432\u0430"] || ""]) != null ? _b : "";
+      const publicationDate = table["\u0420\u0456\u043A \u0432\u0438\u0434\u0430\u043D\u043D\u044F"] || "";
+      const translators = table["\u041F\u0435\u0440\u0435\u043A\u043B\u0430\u0434\u0430\u0447"] || "";
+      const publisher = table["\u0412\u0438\u0434\u0430\u0432\u043D\u0438\u0446\u0442\u0432\u043E"] || "";
+      const pages = Number.parseInt(table["\u041A\u0456\u043B\u044C\u043A\u0456\u0441\u0442\u044C \u0441\u0442\u043E\u0440\u0456\u043D\u043E\u043A"] || "", 10);
+      return {
+        typeName: "YakabooBook",
+        version: 1,
+        coverURL,
+        title,
+        authors,
+        publicationDate,
+        description,
+        translators,
+        publisher,
+        pages,
+        language
       };
     }
   };
@@ -899,21 +900,22 @@
         hostname: "store.steampowered.com",
         pathname: "/app/*"
       });
-      this.scrape = () => {
-        const coverURL = getEl(".game_header_image_full", "cover image").src;
-        const name = getEl("#appHubAppName", "game name").innerText;
-        const releaseDate = getEl(".release_date .date", "release date").innerText;
-        const developers = getListStr(document, "#developers_list a");
-        getEl("#game_area_description h2", "description header").remove();
-        const description = getEl("#game_area_description", "description").innerText;
-        return {
-          typeName: "SteamGame",
-          coverURL,
-          name,
-          releaseDate,
-          developers,
-          description
-        };
+    }
+    scrape() {
+      const coverURL = getEl(".game_header_image_full", "cover image").src;
+      const name = getEl("#appHubAppName", "game name").innerText;
+      const releaseDate = getEl(".release_date .date", "release date").innerText;
+      const developers = getListStr(document, "#developers_list a");
+      getEl("#game_area_description h2", "description header").remove();
+      const description = getEl("#game_area_description", "description").innerText;
+      return {
+        typeName: "SteamGame",
+        version: 1,
+        coverURL,
+        name,
+        releaseDate,
+        developers,
+        description
       };
     }
   };
@@ -927,29 +929,30 @@
         hostname: "myanimelist.net",
         pathname: "/anime/*"
       });
-      this.scrape = () => {
-        var _a3, _b;
-        const engTitle = (_a3 = getEl(".title-english")) == null ? void 0 : _a3.innerText;
-        const title = engTitle || ((_b = getEl(".title-name")) == null ? void 0 : _b.innerText) || "";
-        const coverURL = getEl(".leftside img", "cover image").dataset.src || "";
-        const metadata = getTable(document, ".leftside .spaceit_pad");
-        const releaseDate = metadata.Aired || "";
-        const creators = metadata.Studios || "";
-        const duration = metadata.Duration || "";
-        const description = getEl("[itemprop=description]", "description").innerText;
-        const related = getTable(document, ".anime_detail_related_anime tr");
-        if (related.Prequel) {
-          throw new Error("Can't import an anime: it has a prequel. Start from the first season.");
-        }
-        return {
-          typeName: "MyAnimeListAnime",
-          title,
-          coverURL,
-          releaseDate,
-          creators,
-          duration,
-          description
-        };
+    }
+    scrape() {
+      var _a3, _b;
+      const engTitle = (_a3 = getEl(".title-english")) == null ? void 0 : _a3.innerText;
+      const title = engTitle || ((_b = getEl(".title-name")) == null ? void 0 : _b.innerText) || "";
+      const coverURL = getEl(".leftside img", "cover image").dataset.src || "";
+      const metadata = getTable(document, ".leftside .spaceit_pad");
+      const releaseDate = metadata.Aired || "";
+      const creators = metadata.Studios || "";
+      const duration = metadata.Duration || "";
+      const description = getEl("[itemprop=description]", "description").innerText;
+      const related = getTable(document, ".anime_detail_related_anime tr");
+      if (related.Prequel) {
+        throw new Error("Can't import an anime: it has a prequel. Start from the first season.");
+      }
+      return {
+        typeName: "MyAnimeListAnime",
+        version: 1,
+        title,
+        coverURL,
+        releaseDate,
+        creators,
+        duration,
+        description
       };
     }
   };
@@ -963,93 +966,94 @@
         hostname: "www.imdb.com",
         pathname: "/title/*"
       });
-      this.scrape = async () => {
-        var _a3, _b, _c;
-        for (const loaderEl of document.querySelectorAll("[data-testid=storyline-loader]")) {
-          loaderEl.scrollIntoView();
-          await waitForTimeout(400);
-        }
-        await waitForFunction(
-          () => document.querySelector("[data-testid=storyline-loader]") === null,
-          "wait until loader is gone"
+    }
+    async scrape() {
+      var _a3, _b, _c;
+      for (const loaderEl of document.querySelectorAll("[data-testid=storyline-loader]")) {
+        loaderEl.scrollIntoView();
+        await waitForTimeout(400);
+      }
+      await waitForFunction(
+        () => document.querySelector("[data-testid=storyline-loader]") === null,
+        "wait until loader is gone"
+      );
+      const metadata = getListValues(document, "h1[data-testid=hero__pageTitle]~.ipc-inline-list li");
+      while (metadata.length < 4) {
+        metadata.unshift("");
+      }
+      const filmType = metadata[0].toLowerCase();
+      const isSeries = filmType.includes("series");
+      const isMiniSeries = isSeries && filmType.includes("mini");
+      const title = (await waitForSelector(document, "h1[data-testid=hero__pageTitle]", "title")).innerText;
+      const originalLanguage = getEl(
+        "[data-testid=title-details-languages] ul li a",
+        "original language"
+      ).innerText;
+      const countriesOfOrigin = getListStr(document, "[data-testid=title-details-origin] ul li a");
+      const coverURL = getEl(
+        "[data-testid=hero-media__poster] img",
+        "cover image"
+      ).src;
+      const summaryEl = await waitForSelector(
+        document,
+        "[data-testid=storyline-plot-summary]",
+        "description"
+      );
+      (_a3 = getEl(summaryEl, "div>span")) == null ? void 0 : _a3.remove();
+      const description = getEl(summaryEl, "div", "description").innerText;
+      const releaseDate = (_b = metadata[1]) != null ? _b : "";
+      let duration = (_c = metadata[3]) != null ? _c : "";
+      const creators = [];
+      const cast = [];
+      const creditsEls = getAll(document, "[data-testid=title-pc-principal-credit]");
+      let seasons = void 0;
+      let episodes = void 0;
+      if (isSeries) {
+        seasons = Number.parseInt(
+          getEl(
+            "[data-testid=episodes-browse-episodes] >:nth-child(2) >:nth-child(2)",
+            "seasons count"
+          ).innerText,
+          10
         );
-        const metadata = getListValues(document, "h1[data-testid=hero__pageTitle]~.ipc-inline-list li");
-        while (metadata.length < 4) {
-          metadata.unshift("");
-        }
-        const filmType = metadata[0].toLowerCase();
-        const isSeries = filmType.includes("series");
-        const isMiniSeries = isSeries && filmType.includes("mini");
-        const title = (await waitForSelector(document, "h1[data-testid=hero__pageTitle]", "title")).innerText;
-        const originalLanguage = getEl(
-          "[data-testid=title-details-languages] ul li a",
-          "original language"
-        ).innerText;
-        const countriesOfOrigin = getListStr(document, "[data-testid=title-details-origin] ul li a");
-        const coverURL = getEl(
-          "[data-testid=hero-media__poster] img",
-          "cover image"
-        ).src;
-        const summaryEl = await waitForSelector(
-          document,
-          "[data-testid=storyline-plot-summary]",
-          "description"
+        episodes = Number.parseInt(
+          getEl("[data-testid=episodes-header] .ipc-title__subtext", "episodes count").innerText,
+          10
         );
-        (_a3 = getEl(summaryEl, "div>span")) == null ? void 0 : _a3.remove();
-        const description = getEl(summaryEl, "div", "description").innerText;
-        const releaseDate = (_b = metadata[1]) != null ? _b : "";
-        let duration = (_c = metadata[3]) != null ? _c : "";
-        const creators = [];
-        const cast = [];
-        const creditsEls = getAll(document, "[data-testid=title-pc-principal-credit]");
-        let seasons = void 0;
-        let episodes = void 0;
-        if (isSeries) {
-          seasons = Number.parseInt(
-            getEl(
-              "[data-testid=episodes-browse-episodes] >:nth-child(2) >:nth-child(2)",
-              "seasons count"
-            ).innerText,
-            10
-          );
-          episodes = Number.parseInt(
-            getEl("[data-testid=episodes-header] .ipc-title__subtext", "episodes count").innerText,
-            10
-          );
-          creators.push(...getListValues(creditsEls[0], ":scope ul li a"));
-          cast.push(...getListValues(creditsEls[1], ":scope ul li a"));
-        } else {
-          creators.push(...getListValues(creditsEls[0], ":scope ul li a"));
-          creators.push(...getListValues(creditsEls[1], ":scope ul li a"));
-          cast.push(...getListValues(creditsEls[2], ":scope ul li a"));
-        }
-        if (isMiniSeries) {
-          duration = "";
-        }
-        const chips = getListValues(document, ".ipc-chip__text").map((item) => item.toLowerCase());
-        const isAnime = chips.includes("anime");
-        if (isAnime) {
-          creators.length = 0;
-          cast.length = 0;
-        }
-        const isAnimation = chips.includes("animation");
-        if (isAnimation) {
-          cast.length = 0;
-        }
-        return {
-          typeName: "IMDBFilm",
-          title,
-          coverURL,
-          releaseDate,
-          originalLanguage,
-          countriesOfOrigin,
-          creators: uniqArr(creators).join(", "),
-          cast: uniqArr(cast).join(", "),
-          seasons,
-          episodes,
-          duration,
-          description
-        };
+        creators.push(...getListValues(creditsEls[0], ":scope ul li a"));
+        cast.push(...getListValues(creditsEls[1], ":scope ul li a"));
+      } else {
+        creators.push(...getListValues(creditsEls[0], ":scope ul li a"));
+        creators.push(...getListValues(creditsEls[1], ":scope ul li a"));
+        cast.push(...getListValues(creditsEls[2], ":scope ul li a"));
+      }
+      if (isMiniSeries) {
+        duration = "";
+      }
+      const chips = getListValues(document, ".ipc-chip__text").map((item) => item.toLowerCase());
+      const isAnime = chips.includes("anime");
+      if (isAnime) {
+        creators.length = 0;
+        cast.length = 0;
+      }
+      const isAnimation = chips.includes("animation");
+      if (isAnimation) {
+        cast.length = 0;
+      }
+      return {
+        typeName: "IMDBFilm",
+        version: 1,
+        title,
+        coverURL,
+        releaseDate,
+        originalLanguage,
+        countriesOfOrigin,
+        creators: uniqArr(creators).join(", "),
+        cast: uniqArr(cast).join(", "),
+        seasons,
+        episodes,
+        duration,
+        description
       };
     }
   };
@@ -1061,10 +1065,13 @@
       this.pattern = new URLPattern({
         pathname: "/*.:filetype(jpg|png)"
       });
-      this.scrape = () => ({
+    }
+    scrape() {
+      return {
         typeName: "Image",
+        version: 1,
         imageURL: location.href
-      });
+      };
     }
   };
 
@@ -1078,7 +1085,7 @@
   ];
 
   // src/scraper-ui.html
-  var scraper_ui_default = '<div id="_scraper-ui-panel">\n  <button id="_scraper-ui-btn-scrape">SCRAPE!</button>\n\n  <span id="_scraper-results-counter">Results: <span>0</span></span>\n\n  <button id="_scraper-ui-btn-done">Done</button>\n\n  <style>\n    #_scraper-ui-panel {\n      background: lightgoldenrodyellow;\n      box-shadow:\n        rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,\n        rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,\n        rgba(255, 255, 255, 0.08) 0px 1px 0px inset;\n      border-radius: 5px;\n      padding: 1em 1.2em;\n\n      display: flex;\n      align-items: center;\n\n      position: fixed;\n      top: 5%;\n      right: 10%;\n      z-index: 1000;\n    }\n\n    #_scraper-ui-panel button {\n      font-size: xx-large;\n      cursor: pointer;\n      padding: 0.5em;\n    }\n\n    #_scraper-ui-panel #_scraper-results-counter {\n      font-size: x-large;\n      margin-left: 0.5em;\n      margin-right: 3em;\n    }\n  </style>\n</div>\n';
+  var scraper_ui_default = '<div id="_scraper-ui-panel">\n  <button id="_scraper-ui-btn-scrape">SCRAPE!</button>\n\n  <span id="_scraper-results-counter"\n    >Results: <span class="_scraper-total-count">0</span> (<span class="_scraper-errors-count"\n      >0</span\n    >\n    errors)</span\n  >\n\n  <button id="_scraper-ui-btn-done">Done</button>\n\n  <style>\n    #_scraper-ui-panel {\n      background: lightgoldenrodyellow;\n      box-shadow:\n        rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,\n        rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,\n        rgba(255, 255, 255, 0.08) 0px 1px 0px inset;\n      border-radius: 5px;\n      padding: 1em 1.2em;\n\n      display: flex;\n      align-items: center;\n\n      position: fixed;\n      top: 5%;\n      right: 10%;\n      z-index: 1000;\n    }\n\n    #_scraper-ui-panel button {\n      font-size: xx-large;\n      cursor: pointer;\n      padding: 0.5em;\n    }\n\n    #_scraper-ui-panel #_scraper-results-counter {\n      font-size: x-large;\n      margin-left: 0.5em;\n      margin-right: 3em;\n    }\n  </style>\n</div>\n';
 
   // src/browser-scraper.ts
   var BrowserScraper = class {
@@ -1124,9 +1131,15 @@
     }
     _addResult(result) {
       this.results.push(result);
-      const counterEl = document.querySelector("#_scraper-results-counter span");
-      if (counterEl) {
-        counterEl.innerHTML = this.results.length.toString();
+      const totalCountEl = document.querySelector("#_scraper-results-counter ._scraper-total-count");
+      const errorsCountEl = document.querySelector(
+        "#_scraper-results-counter ._scraper-errors-count"
+      );
+      if (totalCountEl) {
+        totalCountEl.innerHTML = this.results.length.toString();
+      }
+      if (errorsCountEl) {
+        errorsCountEl.innerHTML = this.results.filter((result2) => Boolean(result2.error)).length.toString();
       }
     }
   };

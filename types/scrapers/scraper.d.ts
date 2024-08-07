@@ -1,7 +1,9 @@
 import 'urlpattern-polyfill';
-export declare abstract class Scraper<TypeName extends string, Data extends {
+export interface BaseScrapeResult<TypeName extends string> {
     typeName: TypeName;
-}> {
+    version: number;
+}
+export declare abstract class Scraper<R extends BaseScrapeResult<string>> {
     abstract readonly pattern: URLPattern;
-    abstract readonly scrape: (() => Data) | (() => Promise<Data>);
+    abstract scrape(): Promise<R> | R;
 }

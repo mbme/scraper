@@ -1,6 +1,5 @@
-import { Scraper } from './scraper';
-export type YakabooBook = {
-    typeName: 'YakabooBook';
+import { BaseScrapeResult, Scraper } from './scraper';
+export interface YakabooBook extends BaseScrapeResult<'YakabooBook'> {
     coverURL: string;
     title: string;
     authors: string;
@@ -10,8 +9,20 @@ export type YakabooBook = {
     publisher: string;
     pages: number;
     language: string;
-};
-export declare class YakabooBookScraper extends Scraper<'YakabooBook', YakabooBook> {
+}
+export declare class YakabooBookScraper extends Scraper<YakabooBook> {
     readonly pattern: URLPattern;
-    readonly scrape: () => Promise<YakabooBook>;
+    scrape(): Promise<{
+        typeName: "YakabooBook";
+        version: number;
+        coverURL: string;
+        title: string;
+        authors: string;
+        publicationDate: string;
+        description: string;
+        translators: string;
+        publisher: string;
+        pages: number;
+        language: string;
+    }>;
 }

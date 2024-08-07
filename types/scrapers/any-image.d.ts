@@ -1,9 +1,12 @@
-import { Scraper } from './scraper';
-export type Image = {
-    typeName: 'Image';
+import { BaseScrapeResult, Scraper } from './scraper';
+export interface Image extends BaseScrapeResult<'Image'> {
     imageURL: string;
-};
-export declare class ImageScraper extends Scraper<'Image', Image> {
+}
+export declare class ImageScraper extends Scraper<Image> {
     readonly pattern: URLPattern;
-    readonly scrape: () => Image;
+    scrape(): {
+        typeName: "Image";
+        version: number;
+        imageURL: string;
+    };
 }

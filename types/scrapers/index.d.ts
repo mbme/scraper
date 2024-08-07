@@ -6,4 +6,4 @@ import { IMDBFilm } from './imdb-film';
 import { Image } from './any-image';
 export type { YakabooBook, SteamGame, MyAnimeListAnime, IMDBFilm, Image };
 export type ScrapedData = YakabooBook | SteamGame | MyAnimeListAnime | IMDBFilm | Image;
-export declare const SCRAPERS: Scraper<ScrapedData['typeName'], ScrapedData>[];
+export declare const SCRAPERS: Scraper<ScrapedData>[];

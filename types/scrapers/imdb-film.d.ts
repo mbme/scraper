@@ -1,6 +1,5 @@
-import { Scraper } from './scraper';
-export type IMDBFilm = {
-    typeName: 'IMDBFilm';
+import { BaseScrapeResult, Scraper } from './scraper';
+export interface IMDBFilm extends BaseScrapeResult<'IMDBFilm'> {
     title: string;
     coverURL: string;
     releaseDate: string;
@@ -12,8 +11,22 @@ export type IMDBFilm = {
     episodes?: number;
     duration: string;
     description: string;
-};
-export declare class IMDBFilmScraper extends Scraper<'IMDBFilm', IMDBFilm> {
+}
+export declare class IMDBFilmScraper extends Scraper<IMDBFilm> {
     readonly pattern: URLPattern;
-    readonly scrape: () => Promise<IMDBFilm>;
+    scrape(): Promise<{
+        typeName: "IMDBFilm";
+        version: number;
+        title: string;
+        coverURL: string;
+        releaseDate: string;
+        originalLanguage: string;
+        countriesOfOrigin: string;
+        creators: string;
+        cast: string;
+        seasons: number | undefined;
+        episodes: number | undefined;
+        duration: string;
+        description: string;
+    }>;
 }
