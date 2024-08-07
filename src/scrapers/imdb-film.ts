@@ -8,10 +8,9 @@ import {
   waitForSelector,
   waitForTimeout,
 } from '../utils';
-import { Scraper } from './scraper';
+import { BaseScrapeResult, Scraper } from './scraper';
 
-export type IMDBFilm = {
-  typeName: 'IMDBFilm';
+export interface IMDBFilm extends BaseScrapeResult<'IMDBFilm'> {
   title: string;
   coverURL: string;
   releaseDate: string;
@@ -23,19 +22,19 @@ export type IMDBFilm = {
   episodes?: number;
   duration: string;
   description: string;
-};
+}
 
 // In general, its hard to scrape data from IMDB because page structure / information order
 // often changes based on content type (movie/series/short series etc.)
 
-export class IMDBFilmScraper extends Scraper<'IMDBFilm', IMDBFilm> {
+export class IMDBFilmScraper extends Scraper<IMDBFilm> {
   // https://www.imdb.com/title/tt0133093/
   readonly pattern = new URLPattern({
     hostname: 'www.imdb.com',
     pathname: '/title/*',
   });
 
-  readonly scrape = async (): Promise<IMDBFilm> => {
+  async scrape() {
     for (const loaderEl of document.querySelectorAll('[data-testid=storyline-loader]')) {
       loaderEl.scrollIntoView();
       await waitForTimeout(400);
@@ -128,7 +127,7 @@ export class IMDBFilmScraper extends Scraper<'IMDBFilm', IMDBFilm> {
     }
 
     return {
-      typeName: 'IMDBFilm',
+      typeName: 'IMDBFilm' as const,
       title,
       coverURL,
       releaseDate,
@@ -141,5 +140,5 @@ export class IMDBFilmScraper extends Scraper<'IMDBFilm', IMDBFilm> {
       duration,
       description,
     };
-  };
+  }
 }

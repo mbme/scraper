@@ -1,5 +1,5 @@
 import { getEl, getTable, Obj, waitForFunction } from '../utils';
-import { Scraper } from './scraper';
+import { BaseScrapeResult, Scraper } from './scraper';
 
 const LANGUAGE_TRANSLATIONS: Obj<string> = {
   'Українська': 'Ukrainian',
@@ -7,8 +7,7 @@ const LANGUAGE_TRANSLATIONS: Obj<string> = {
   'Російська': 'Russian',
 };
 
-export type YakabooBook = {
-  typeName: 'YakabooBook';
+export interface YakabooBook extends BaseScrapeResult<'YakabooBook'> {
   coverURL: string;
   title: string;
   authors: string;
@@ -18,16 +17,16 @@ export type YakabooBook = {
   publisher: string;
   pages: number;
   language: string;
-};
+}
 
-export class YakabooBookScraper extends Scraper<'YakabooBook', YakabooBook> {
+export class YakabooBookScraper extends Scraper<YakabooBook> {
   // https://yakaboo.ua/ua/stories-of-your-life-and-others.html
   readonly pattern = new URLPattern({
     hostname: 'www.yakaboo.ua',
     pathname: '/ua/*',
   });
 
-  readonly scrape = async (): Promise<YakabooBook> => {
+  async scrape() {
     const coverURL = getEl<HTMLImageElement>('.gallery img', 'cover image').src;
     const title = getEl('.base-product__title h1', 'title')
       .innerText.substring('Книга '.length) // remove the prefix that Yakaboo adds to all titles
@@ -61,7 +60,7 @@ export class YakabooBookScraper extends Scraper<'YakabooBook', YakabooBook> {
     const pages = Number.parseInt(table['Кількість сторінок'] || '', 10);
 
     return {
-      typeName: 'YakabooBook',
+      typeName: 'YakabooBook' as const,
       coverURL,
       title,
       authors,
@@ -72,5 +71,5 @@ export class YakabooBookScraper extends Scraper<'YakabooBook', YakabooBook> {
       pages,
       language,
     };
-  };
+  }
 }

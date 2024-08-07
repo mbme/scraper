@@ -1,24 +1,23 @@
 import { getEl, getTable } from '../utils';
-import { Scraper } from './scraper';
+import { BaseScrapeResult, Scraper } from './scraper';
 
-export type MyAnimeListAnime = {
-  typeName: 'MyAnimeListAnime';
+export interface MyAnimeListAnime extends BaseScrapeResult<'MyAnimeListAnime'> {
   title: string;
   coverURL: string;
   releaseDate: string;
   creators: string;
   duration: string;
   description: string;
-};
+}
 
-export class MyAnimeListAnimeScraper extends Scraper<'MyAnimeListAnime', MyAnimeListAnime> {
+export class MyAnimeListAnimeScraper extends Scraper<MyAnimeListAnime> {
   // https://myanimelist.net/anime/30276/One_Punch_Man
   readonly pattern = new URLPattern({
     hostname: 'myanimelist.net',
     pathname: '/anime/*',
   });
 
-  readonly scrape = (): MyAnimeListAnime => {
+  scrape() {
     const engTitle = getEl('.title-english')?.innerText;
 
     const title = engTitle || getEl('.title-name')?.innerText || '';
@@ -38,7 +37,7 @@ export class MyAnimeListAnimeScraper extends Scraper<'MyAnimeListAnime', MyAnime
     }
 
     return {
-      typeName: 'MyAnimeListAnime',
+      typeName: 'MyAnimeListAnime' as const,
       title,
       coverURL,
       releaseDate,
@@ -46,5 +45,5 @@ export class MyAnimeListAnimeScraper extends Scraper<'MyAnimeListAnime', MyAnime
       duration,
       description,
     };
-  };
+  }
 }

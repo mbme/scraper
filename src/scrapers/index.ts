@@ -9,7 +9,7 @@ import { ImageScraper, Image } from './any-image';
 export type { YakabooBook, SteamGame, MyAnimeListAnime, IMDBFilm, Image };
 export type ScrapedData = YakabooBook | SteamGame | MyAnimeListAnime | IMDBFilm | Image;
 
-export const SCRAPERS: Scraper<ScrapedData['typeName'], ScrapedData>[] = [
+export const SCRAPERS: Scraper<ScrapedData>[] = [
   new YakabooBookScraper(),
   new SteamGameScraper(),
   new MyAnimeListAnimeScraper(),

@@ -1,23 +1,22 @@
 import { getEl, getListStr } from '../utils';
-import { Scraper } from './scraper';
+import { BaseScrapeResult, Scraper } from './scraper';
 
-export type SteamGame = {
-  typeName: 'SteamGame';
+export interface SteamGame extends BaseScrapeResult<'SteamGame'> {
   coverURL: string;
   name: string;
   releaseDate: string;
   developers: string;
   description: string;
-};
+}
 
-export class SteamGameScraper extends Scraper<'SteamGame', SteamGame> {
+export class SteamGameScraper extends Scraper<SteamGame> {
   // https://store.steampowered.com/app/814380/Sekiro_Shadows_Die_Twice__GOTY_Edition/
   readonly pattern = new URLPattern({
     hostname: 'store.steampowered.com',
     pathname: '/app/*',
   });
 
-  readonly scrape = (): SteamGame => {
+  scrape() {
     const coverURL = getEl<HTMLImageElement>('.game_header_image_full', 'cover image').src;
     const name = getEl('#appHubAppName', 'game name').innerText;
     const releaseDate = getEl('.release_date .date', 'release date').innerText;
@@ -29,12 +28,12 @@ export class SteamGameScraper extends Scraper<'SteamGame', SteamGame> {
     const description = getEl('#game_area_description', 'description').innerText;
 
     return {
-      typeName: 'SteamGame',
+      typeName: 'SteamGame' as const,
       coverURL,
       name,
       releaseDate,
       developers,
       description,
     };
-  };
+  }
 }
