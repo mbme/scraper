@@ -6,7 +6,7 @@ exports[`myanimelist > can scrape a movie 1`] = `
     "typeName": "MyAnimeListAnime",
     "version": 1,
     "title": "My Neighbor Totoro",
-    "coverURL": "https://cdn.myanimelist.net/images/anime/4/75923.jpg",
+    "coverURL": "https://cdn.myanimelist.net/images/anime/1110/147278.jpg",
     "releaseDate": "Apr 16, 1988",
     "creators": "Studio Ghibli",
     "duration": "1 hr. 26 min.",
