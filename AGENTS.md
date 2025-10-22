@@ -23,6 +23,9 @@ These notes align contributors on how to work in this project.
 - Keep side effects inside `index.ts` or dedicated UI glue; utility modules should be deterministic and dependency free.
 - Run `npm run lint` before pushing to catch unused exports or implicit `any`.
 
+### Site-Specific Notes
+- Yakaboo: the product attributes accordion now renders through `[data-testid="char-toggler"]`; fall back to the legacy `.main__chars button.ui-btn-nav` selector and treat `aria-expanded`/`aria-pressed` or `Приховати` as the expanded signal.
+
 ## Testing Guidelines
 - Tests live beside implementations as `*.e2e.ts`; pair each with a `.snapshot` file checked in.
 - Ensure Chromium is available on PATH; override with `CHROMIUM_PATH=/path/to/chromium just e2e`.

@@ -28,25 +28,53 @@ export class YakabooBookScraper extends Scraper<YakabooBook> {
 
   async scrape() {
     const coverURL = getEl<HTMLImageElement>('.gallery img', 'cover image').src;
-    const title = getEl('.base-product__title h1', 'title')
-      .innerText.substring('Книга '.length) // remove the prefix that Yakaboo adds to all titles
-      .trim();
+    const rawTitle = getEl('.base-product__title h1', 'title').innerText.trim();
+    const title = rawTitle.replace(/^Книга[\s\u00A0]*/i, '').trim();
 
     // expand description if button is present
     getEl('.description__btn')?.click();
 
     const description = getEl('.description__content', 'description').innerText;
 
-    const expandAttrsBtn = getEl('.main__chars button.ui-btn-nav', 'expand attributes button');
-    expandAttrsBtn.scrollIntoView();
-    expandAttrsBtn.click();
-    await waitForFunction(
-      () =>
-        document
-          .querySelector<HTMLElement>('.main__chars button.ui-btn-nav')
-          ?.innerText.includes('Приховати') ?? false,
-      'collapse attributes button',
-    );
+    const toggleSelectors = [
+      '.main__chars button.ui-btn-nav',
+      '.main__chars [data-testid="char-toggler"]',
+      '[data-testid="char-toggler"] button',
+      '[data-testid="char-toggler"]',
+    ];
+    const toggleSelectorsQuery = toggleSelectors.join(', ');
+
+    const expandAttrsBtn = toggleSelectors
+      .map((selector) => document.querySelector<HTMLElement>(selector))
+      .find((btn): btn is HTMLElement => Boolean(btn));
+
+    const isExpanded = (button: HTMLElement) => {
+      const normalizedText = button.innerText.toLowerCase();
+      if (normalizedText.includes('приховати') || normalizedText.includes('згорнути')) {
+        return true;
+      }
+      if (button.getAttribute('aria-expanded') === 'true') {
+        return true;
+      }
+      if (button.getAttribute('aria-pressed') === 'true') {
+        return true;
+      }
+      return button.classList.contains('is-active') || button.classList.contains('active');
+    };
+
+    if (expandAttrsBtn) {
+      expandAttrsBtn.scrollIntoView();
+      if (!isExpanded(expandAttrsBtn)) {
+        expandAttrsBtn.click();
+        await waitForFunction(() => {
+          const button = document.querySelector<HTMLElement>(toggleSelectorsQuery);
+          if (!button) {
+            return false;
+          }
+          return isExpanded(button);
+        }, 'collapse attributes button').catch(() => undefined);
+      }
+    }
 
     const table = getTable(document, '.product-chars .chars .char', '\n');
 
