@@ -68,9 +68,10 @@ type PageSetupOptions = {
   waitForNetworkIdle?: boolean;
 };
 export async function setupPage(page: Page, url: string, options: PageSetupOptions = {}) {
-  await page.setUserAgent(
-    'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36',
-  );
+  await page.setUserAgent({
+    userAgent:
+      'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36',
+  });
 
   const waitUntil: PuppeteerLifeCycleEvent[] = ['domcontentloaded'];
   if (options.waitForNetworkIdle) {
@@ -90,8 +91,12 @@ export async function scrapePage(t: TestContext, page: Page) {
     return result;
   } catch (e) {
     const now = new Date().toISOString();
+    const screenshotPath = path.resolve(
+      __dirname,
+      `../screenshots/${now}-${t.fullName}.png`,
+    ) as `${string}.png`;
     await page.screenshot({
-      path: path.resolve(__dirname, `../screenshots/${now}-${t.fullName}.png`),
+      path: screenshotPath,
       // fullPage: true,
     });
 
